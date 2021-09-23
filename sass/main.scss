@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap");
+
+$color-primary: hsl(233, 13%, 49%);
+$color-primary-light: hsl(234, 14%, 74%);
+$color-primary-lighter: hsl(240, 78%, 98%);
+$color-primary-dark: hsl(232, 13%, 33%);
+$color-border: hsl(0, 0%, 85%);
+
+$color-gradient1: hsl(236, 72%, 79%);
+$color-gradient2: hsl(237, 63%, 64%);
+
+$grid-width: 80rem; //1200px
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 93.75%; // 15/16
+}
+
+body {
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+    background-color: $color-primary-lighter;
+
+    background-image: url("/images/bg-top.svg"), url("/images/bg-bottom.svg");
+    background-position: top right, left bottom;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+.section-pricing {
+    width: $grid-width;
+    max-width: 100%;
+    margin: 4rem auto;
+    padding: 2rem;
+}
+.section-heading {
+    padding: 0.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.headingPrimary {
+    color: $color-primary-dark;
+    margin-bottom: 1rem;
+}
+
+.label {
+    color: $color-primary-light;
+    padding: 1rem;
+    font-size: 0.8rem;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none; //checkbox is made invisible
+    outline: none;
+
+    position: relative; // to position the slider
+
+    cursor: pointer;
+    width: 40px;
+    height: 20px;
+    padding: 3px 0;
+    background-image: linear-gradient(
+        to right,
+        $color-gradient1,
+        $color-gradient2
+    );
+    border-radius: 50px;
+}
+
+//slider(circle)
+//using pseudeo element ::before. Height same as button's height, width half the button's width and
+//positioned absolutely with top:0 and left:0
+input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 20px;
+    height: 20px;
+
+    background-color: $color-primary-lighter;
+    border-radius: 50px;
+    transition: all 0.6s;
+}
+
+input[type="checkbox"]:checked:before {
+    transform: translate(96%);
+}
+
+.row {
+    max-width: $grid-width;
+    min-height: 28rem;
+    margin: 0 auto;
+
+    @media only screen and (max-width: 800px) {
+        max-width: 26rem;
+        min-height: auto;
+        padding: 0 2rem;
+    }
+    //select all elements in which the class attribute starts with col
+    [class^="col-"] {
+        float: left;
+
+        @media only screen and (max-width: 800px) {
+            width: 100% !important;
+        }
+    }
+
+    // append a pseudo element after the float element which clears floats
+    &::after {
+        content: ""; //pseudo element will not be visible if content not set to ""
+        display: table;
+        clear: both; // clears both floats left or right
+    }
+
+    .col-1-of-3 {
+        width: calc(100% / 3);
+    }
+}
+
+.card {
+    text-align: center;
+    font-size: 0.8rem;
+    height: 25rem;
+
+    box-shadow: 0 1rem 3rem rgba($color-primary-dark, 0.15);
+
+    @media only screen and (max-width: 800px) {
+        margin-bottom: 3rem;
+        box-shadow: none;
+    }
+
+    &__card1--side {
+        background-color: #fff;
+        color: $color-primary;
+        height: 25rem;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+
+        @media only screen and (max-width: 800px) {
+            border-radius: 10px;
+        }
+    }
+    &__card2--side {
+        background-image: linear-gradient(
+            to bottom,
+            $color-gradient1,
+            $color-gradient2
+        );
+        color: $color-primary-lighter;
+        height: 28rem;
+        margin-top: -1.5rem;
+        border-radius: 10px;
+        padding: 0.7rem 0;
+
+        @media only screen and (max-width: 800px) {
+            height: 26rem;
+        }
+    }
+
+    &__card3--side {
+        background-color: #fff;
+        color: $color-primary;
+        height: 25rem;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+
+        @media only screen and (max-width: 800px) {
+            border-radius: 10px;
+        }
+    }
+
+    &__details {
+        ul {
+            list-style: none;
+            margin: 0 auto;
+            border-top: 0.3px solid $color-primary-light;
+            width: 60%;
+            margin-bottom: 2rem;
+
+            li {
+                text-align: center;
+                padding: 1.2rem 0;
+                border-bottom: 0.3px solid $color-primary-light;
+            }
+        }
+    }
+}
+h4 {
+    color: $color-primary-dark;
+    padding: 1rem 1rem;
+}
+.premium {
+    color: $color-primary-lighter;
+}
+.price {
+    color: $color-primary-dark;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.price2 {
+    color: $color-primary-lighter;
+    margin-bottom: 1rem;
+}
+
+.btn:link,
+.btn:visited {
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1.1;
+    width: 60%;
+    display: inline-block;
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+
+.btn-blue {
+    background-image: linear-gradient(
+        to right,
+        $color-gradient1,
+        $color-gradient2
+    );
+}
+
+.btn-blue:hover,
+.btn-blue:active {
+    background-image: none;
+    background-color: $color-primary-lighter;
+    outline: 1px solid hsl(237, 63%, 64%);
+    border-radius: 5px;
+    transform: translateY(-3px);
+}
+
+.btn-white {
+    background-color: $color-primary-lighter;
+}
+.btn-white:hover,
+.btn-white:active {
+    background-image: linear-gradient(
+        to right,
+        $color-gradient1,
+        $color-gradient2
+    );
+    outline: 1px solid $color-primary-lighter;
+    color: #fff;
+    border-radius: 5px;
+    transform: translateY(-3px);
+}
+
+.attribution {
+    padding-top: 3rem;
+    font-size: 11px;
+    text-align: center;
+    @media only screen and (max-width: 800px) {
+        padding-top: 1rem;
+    }
+}
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
